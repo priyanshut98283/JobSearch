@@ -1,19 +1,19 @@
+require("dotenv").config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const multer = require('multer');
 const cors = require('cors');
-
 const app = express();
 const PORT = 8080;
-
+const { MONGO_URL } = process.env;
 // Use middleware
 app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://priyanshut:Pt.98283@cluster0.7buom4z.mongodb.net/job-search', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 // Define user schema
 const userSchema = new mongoose.Schema({
   username: String,
